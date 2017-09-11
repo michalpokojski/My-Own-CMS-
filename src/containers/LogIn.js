@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { logInUser } from '../reducers/user'
-import LogIn from '../Components/LogIn'
+import LogIn from '../components/LogIn'
 
 export default connect(
   null,

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { logInUser } from './reducers/user'
 import { Redirect } from 'react-router'
 
 class AuthRoute extends Component {

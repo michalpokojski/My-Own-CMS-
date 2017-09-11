@@ -4,7 +4,7 @@ import {Route} from 'react-router'
 import Router from './router'
 import LogIn from './containers/LogIn'
 import AuthRoute from './AuthRoute'
-import AppView from "./Components/AppView"
+import AppView from "./containers/AppView"
 
 class App extends Component {
   render() {

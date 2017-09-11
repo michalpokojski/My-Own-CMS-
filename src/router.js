@@ -1,8 +1,8 @@
 import React from 'react'
-import { HashRouter as Router } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 export default ({children}) => (
-  <Router>
+  <BrowserRouter>
     {children}
-  </Router>
+  </BrowserRouter>
 )

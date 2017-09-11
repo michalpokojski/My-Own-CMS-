@@ -17,7 +17,7 @@ class AppView extends Component {
 }
 
 export default connect(
-  state => ({}),
+  null,
   dispatch => ({
     logOutUser: () => dispatch(logOutUser())
   })

@@ -1,0 +1,15 @@
+[{
+  "user": "misio",
+  "password": "qwe123",
+  "type": "user"
+
+},{
+  "user": "aaa",
+  "password": "aaa",
+  "type": "user"
+
+},{
+  "user": "admin",
+  "password": "admin",
+  "type": "admin"
+}]

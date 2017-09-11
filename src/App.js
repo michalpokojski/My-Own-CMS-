@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {Provider} from 'react-redux'
-import {Route} from 'react-router'
+import {Route, Redirect} from 'react-router'
 import Router from './router'
 import LogIn from './Components/LogIn'
+import AppView from "./Components/AppView"
+
 
 class App extends Component {
   render() {
@@ -10,7 +12,11 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <Route path='/' component={LogIn}/>
+          <div>
+            <Redirect exact from='/' to='/login'/>
+            <Route path='/login' component={LogIn}/>
+            <Route path='/dashboard' component={AppView}/>
+          </div>
         </Router>
       </Provider>
     )

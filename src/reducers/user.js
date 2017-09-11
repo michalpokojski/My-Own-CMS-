@@ -1,3 +1,5 @@
+import users from '../data/users.json'
+
 const LOGIN_USER = 'users/LOGIN_USER'
 
 export const logInUser = () =>({
@@ -6,7 +8,7 @@ export const logInUser = () =>({
 
 
 const initialState = {
-  users: [1,2,3,4],
+  users,
   isLoggedIn: false
 }
 

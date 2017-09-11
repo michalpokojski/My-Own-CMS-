@@ -1,9 +1,14 @@
 import users from '../data/users.json'
 
 const LOGIN_USER = 'users/LOGIN_USER'
+const LOGOUT_USER = 'users/LOGOUT_USER'
 
-export const logInUser = () =>({
+const logInUser = () =>({
   type: LOGIN_USER
+})
+
+const logOutUser = () =>({
+  type: LOGOUT_USER
 })
 
 
@@ -20,7 +25,14 @@ export default (state = initialState, action = {}) => {
         ...state,
         isLoggedIn: true
       }
+    case LOGOUT_USER:
+      return {
+        ...state,
+        isLoggedIn: false
+      }
     default:
       return state
   }
 }
+
+export { logOutUser, logInUser }

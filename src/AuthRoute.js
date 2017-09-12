@@ -2,14 +2,17 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
+
 class AuthRoute extends Component {
 
   render() {
     return (
       <div>
-        {this.props.isLoggedIn
+
+        { this.props.user
           ?
-          <Redirect from='' to='/dashboard' /> :
+          <Redirect from='' to='/dashboard' />
+          :
           <Redirect to='/login' />
         }
       </div>
@@ -19,6 +22,6 @@ class AuthRoute extends Component {
 
 export default connect(
   state => ({
-    isLoggedIn: state.user.isLoggedIn
+    user: state.user.user,
   })
 )(AuthRoute)

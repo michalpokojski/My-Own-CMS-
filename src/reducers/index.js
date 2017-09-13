@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import user from './user'
+import auth from './auth'
 import users from './users'
 import { reducer as reduxFormReducer } from 'redux-form'
 
 export default combineReducers({
-  user,
+  auth,
   users,
   form: reduxFormReducer
 })

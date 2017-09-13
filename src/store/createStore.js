@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import reducers from '../reducers'
 import thunk from 'redux-thunk'
 import persistState from 'redux-localstorage'
@@ -12,6 +12,6 @@ export default initialState => {
       applyMiddleware(
         thunk
       ),
-      persistState(['user'], {key : 'users'})
+      persistState(['user'], {key: 'users'})
     ))
 }

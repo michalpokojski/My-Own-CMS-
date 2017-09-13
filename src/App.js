@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {Provider} from 'react-redux'
-import {Route} from 'react-router'
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+import { Route } from 'react-router'
 import Router from './router'
 import LogIn from './containers/LogIn'
 import AuthRoute from './AuthRoute'
@@ -13,7 +13,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div>
-            <AuthRoute path='/' />
+            <AuthRoute path='/'/>
             <Route path='/login' component={LogIn}/>
             <Route path='/dashboard' component={AppView}/>
           </div>

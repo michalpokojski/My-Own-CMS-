@@ -1,13 +1,12 @@
-
 const LOGIN_USER = 'users/LOGIN_USER'
 const LOGOUT_USER = 'users/LOGOUT_USER'
 
-const logInUser = userAuth =>({
+const logInUser = userAuth => ({
   type: LOGIN_USER,
   userAuth
 })
 
-const logOutUser = () =>({
+const logOutUser = () => ({
   type: LOGOUT_USER
 })
 
@@ -17,7 +16,7 @@ const initialState = {
 }
 
 export default (state = initialState, action = {}) => {
-  switch(action.type) {
+  switch (action.type) {
     case LOGIN_USER:
       return {
         ...state,

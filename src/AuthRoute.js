@@ -5,16 +5,12 @@ import { Redirect } from 'react-router'
 
 class AuthRoute extends Component {
 
+  getDefaultPage = () => this.props.user ? '/dashboard' : '/login'
+
   render() {
     return (
       <div>
-
-        { this.props.user
-          ?
-          <Redirect from='' to='/dashboard' />
-          :
-          <Redirect to='/login' />
-        }
+        <Redirect to={this.getDefaultPage()}/> :
       </div>
     )
   }
@@ -22,6 +18,6 @@ class AuthRoute extends Component {
 
 export default connect(
   state => ({
-    user: state.user.user,
+    user: state.auth.user,
   })
 )(AuthRoute)

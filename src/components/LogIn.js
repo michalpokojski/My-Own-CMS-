@@ -1,11 +1,9 @@
 import React from "react"
-import {Field, reduxForm} from "redux-form"
+import { Field } from "redux-form"
 import submit from '../containers/submit'
 import TextField from 'material-ui/TextField'
 import { MuiThemeProvider } from 'material-ui/styles'
-
-
-const required = value => (value ? undefined : 'Required')
+import { required } from "../helpers/validation"
 
 export const renderTextField = ({input, label, meta: {touched, error}, ...custom},) => (
   <MuiThemeProvider>
@@ -20,13 +18,11 @@ export const renderTextField = ({input, label, meta: {touched, error}, ...custom
 )
 
 
-const SimpleForm = props => {
+const LogIn = props => {
   const {handleSubmit, submitting, error} = props
-
   return (
     <form onSubmit={handleSubmit(submit)}>
       <div>
-        {/*<label>Email</label>*/}
         <div>
           <Field
             name="email"
@@ -38,7 +34,6 @@ const SimpleForm = props => {
         </div>
       </div>
       <div>
-        <label>Password</label>
         <div>
           <Field
             name="password"
@@ -47,25 +42,17 @@ const SimpleForm = props => {
             type="password"
             validate={required}
           />
-          {error && <strong>{error}</strong>}
         </div>
       </div>
       <div>
         <button type="submit" disabled={submitting}>
           Submit
         </button>
+        <br/>
+        {error && <strong>{error}</strong>}
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default reduxForm({
-  form: "auth"
-})(SimpleForm);
-
-
-
-
-
-
-
+export default LogIn

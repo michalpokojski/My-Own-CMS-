@@ -12,6 +12,6 @@ export default initialState => {
       applyMiddleware(
         thunk
       ),
-      persistState(['user'], {key: 'users'})
+      persistState(['auth'], {key: 'userLoggedIn'})
     ))
 }

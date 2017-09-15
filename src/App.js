@@ -1,8 +1,10 @@
-import React, {Component} from 'react'
-import {Provider} from 'react-redux'
+import React, { Component } from 'react'
+import { Provider } from 'react-redux'
 import { Route } from 'react-router'
 import Router from './router'
-
+import LogIn from './containers/LogIn'
+import AuthRoute from './AuthRoute'
+import AppView from "./containers/AppView"
 
 class App extends Component {
   render() {
@@ -10,8 +12,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className="App">
-            Hello World !
+          <div>
+            <AuthRoute path='/'/>
+            <Route path='/login' component={LogIn}/>
+            <Route path='/dashboard' component={AppView}/>
           </div>
         </Router>
       </Provider>

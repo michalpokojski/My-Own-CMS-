@@ -10,7 +10,6 @@ const logOutUser = () => ({
   type: LOGOUT_USER
 })
 
-
 const initialState = {
   user: null
 }

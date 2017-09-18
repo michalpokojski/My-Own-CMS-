@@ -10,7 +10,7 @@ class AuthRoute extends Component {
   render() {
     return (
       <div>
-        <Redirect to={this.getDefaultPage()}/> :
+        <Redirect to={this.getDefaultPage()}/>
       </div>
     )
   }

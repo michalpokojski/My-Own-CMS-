@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+import MainMenu from './MainMenu'
 
 class AppView extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.logOutUser}>Log Out</button>
-        App View
+        <MainMenu logOutUser={this.props.logOutUser}/>
       </div>
     )
   }

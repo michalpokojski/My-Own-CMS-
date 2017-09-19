@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import Posts from './Posts'
-import Users from './Users'
+import { withRouter } from 'react-router-dom'
 
-const MainMenu = (props) => (
-  <Tabs>
-    <Tab label="Posts">
-      <Posts />
-    </Tab>
-    <Tab label="Users">
-      <Users />
-    </Tab>
-    <div style={{width: '25%'}}/>
-    <Tab onActive={() => props.logOutUser()} label="Logout"/>
+class MainMenu extends Component {
 
-  </Tabs>
-);
+  render() {
+    return (
+      <Tabs>
+        <Tab onActive={() => this.props.history.push('/dashboard')} label="Dashboard"/>
+        <Tab onActive={() => this.props.history.push('/dashboard/posts')} label="Posts"/>
+        <Tab onActive={() => this.props.history.push('/dashboard/users')} label="Users"/>
+        <Tab onActive={() => this.props.logOutUser()} label="Logout"/>
 
-export default MainMenu
+      </Tabs>
+    )
+  }
+}
+
+export default withRouter(MainMenu)

@@ -6,6 +6,7 @@ import LogIn from './containers/LogIn'
 import AuthRoute from './AuthRoute'
 import AppView from "./containers/AppView"
 import { MuiThemeProvider } from 'material-ui/styles'
+import SecuredRoute from './SecuredRoute'
 
 
 class App extends Component {
@@ -18,7 +19,7 @@ class App extends Component {
             <div>
               <AuthRoute path='/'/>
               <Route path='/login' component={LogIn}/>
-              <Route path='/dashboard' component={AppView}/>
+              <Route path='/dashboard' component={SecuredRoute(AppView)}/>
             </div>
           </MuiThemeProvider>
         </Router>

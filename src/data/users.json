@@ -1,15 +1,19 @@
 [{
   "email": "misio@misio.pl",
   "password": "qwe123",
-  "type": "user"
-
+  "type": "user",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
 },{
   "email": "aaa@aaa.com",
   "password": "aaa",
-  "type": "user"
-
+  "type": "user",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
 },{
   "email": "admin@admin.admin",
-  "password": "adminadmin",
-  "type": "admin"
+  "password": "admin",
+  "type": "admin",
+  "firstName": "Admin",
+  "lastName": "Adminowaty"
 }]

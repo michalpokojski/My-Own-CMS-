@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
-
 export default function (ComposedComponent) {
-  class Authentication extends Component {
+  class SecuredRoute extends Component {
 
     componentWillMount() {
       if (!this.props.user) {
@@ -26,5 +25,5 @@ export default function (ComposedComponent) {
   return connect(
     state => ({
       user: state.auth.user
-    }))(withRouter(Authentication))
+    }))(withRouter(SecuredRoute))
 }

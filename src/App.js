@@ -8,7 +8,6 @@ import AppView from "./containers/AppView"
 import { MuiThemeProvider } from 'material-ui/styles'
 import SecuredRoute from './SecuredRoute'
 
-
 class App extends Component {
   render() {
     const {store} = this.props

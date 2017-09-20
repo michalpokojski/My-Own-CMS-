@@ -6,7 +6,8 @@ const changeFilterName = filter => ({
 })
 
 const initialState = {
-  filterName: 'email'
+  filterName: 'email',
+  latelyFiltered: false
 }
 
 export default (state = initialState, action = {}) => {
@@ -14,7 +15,8 @@ export default (state = initialState, action = {}) => {
     case CHANGE_FILTER_NAME:
       return {
         ...state,
-        filterName: action.filter
+        filterName: action.filter,
+        latelyFiltered: !state.latelyFiltered
       }
     default:
       return state

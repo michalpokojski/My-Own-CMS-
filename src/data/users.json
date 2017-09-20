@@ -16,4 +16,76 @@
   "type": "admin",
   "firstName": "Admin",
   "lastName": "Adminowaty"
+},{
+  "email": "misftgbtbybio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "aaasdweda@aaa.com",
+  "password": "aaa",
+  "type": "user",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "misqweqweqweio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "awerfwerfaa@etybetbytaaa.com",
+  "password": "aaa",
+  "type": "user",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "mfwrfwrgtreisio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "aaa@aawerfewrfa.com",
+  "password": "aaa",
+  "type": "user",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "miswerfwerfio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "aaa@aaartrtg.com",
+  "password": "aaa",
+  "type": "user",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "misio@mirtgergtergsio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "argtergtetgretaa@aaa.com",
+  "password": "aaa",
+  "type": "user",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "misgrgrgrerio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "aaregtretgregta@aaa.com",
+  "password": "aaa",
+  "type": "user",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
 }]

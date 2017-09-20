@@ -8,7 +8,6 @@ class AuthRoute extends Component {
   getDefaultPage = () => this.props.user ? '/cms' : '/login'
 
   render() {
-    console.log('Here i Am')
     return (
       <div>
         <Redirect to={this.getDefaultPage()}/>

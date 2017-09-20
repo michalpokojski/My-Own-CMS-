@@ -1,0 +1,1 @@
+export const sortByString = (array, condition)  => array.sort((a, b) => a[condition].localeCompare(b[condition]))

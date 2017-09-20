@@ -16,9 +16,9 @@ class App extends Component {
         <Router>
           <MuiThemeProvider>
             <div>
-              <AuthRoute path='/'/>
-              <Route path='/login' component={LogIn}/>
-              <Route path='/dashboard' component={SecuredRoute(AppView)}/>
+                <AuthRoute path='/'/>
+                <Route path='/login' component={LogIn}/>
+                <Route path='/cms' component={SecuredRoute(AppView)}/>
             </div>
           </MuiThemeProvider>
         </Router>

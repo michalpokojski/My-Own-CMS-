@@ -9,9 +9,9 @@ class MainMenu extends Component {
   render() {
     return (
       <Tabs>
-        <Tab onActive={this.redirect('/dashboard')} label="Dashboard"/>
-        <Tab onActive={this.redirect('/dashboard/posts')} label="Posts"/>
-        <Tab onActive={this.redirect('/dashboard/users')} label="Users"/>
+        <Tab onActive={this.redirect('/cms/dashboard')} label="Dashboard"/>
+        <Tab onActive={this.redirect('/cms/posts')} label="Posts"/>
+        <Tab onActive={this.redirect('/cms/users')} label="Users"/>
         <Tab onActive={this.props.logOutUser} label="Logout"/>
       </Tabs>
     )

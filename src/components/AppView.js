@@ -10,9 +10,9 @@ class AppView extends Component {
     return (
       <div>
         <MainMenu logOutUser={this.props.logOutUser}/>
-        <Route path='/dashboard/posts' component={Posts}/>
-        <Route exact path='/dashboard' component={Dashboard}/>
-        <Route path='/dashboard/users' component={Users}/>
+        <Route path='/cms/posts' component={Posts}/>
+        <Route exact path='/cms/dashboard' component={Dashboard}/>
+        <Route path='/cms/users' component={Users}/>
       </div>
     )
   }

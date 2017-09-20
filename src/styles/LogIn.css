@@ -1,0 +1,10 @@
+.log-in-form {
+    margin: auto;
+}
+
+.bad-weather {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}

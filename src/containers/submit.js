@@ -2,11 +2,11 @@ import { SubmissionError } from 'redux-form';
 import users from '../data/users.json'
 import { logInUser } from '../reducers/auth'
 
-const showOnlyAnmins = value => users.filter(user => user.type === userType).map(user => user[value])
+const showOnlyAdmins = value => users.filter(user => user.type === userType).map(user => user[value])
 const gogogo = ms => new Promise(resolve => setTimeout(resolve, ms))
 const userType = 'admin'
-const email = showOnlyAnmins('email')
-const password = showOnlyAnmins('password')
+const email = showOnlyAdmins('email')
+const password = showOnlyAdmins('password')
 
 function submit(values, dispatch) {
   return gogogo(1).then(() => {

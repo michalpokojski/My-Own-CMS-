@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import MainMenu from './MainMenu'
 import Posts from './Posts'
-import Users from './Users'
+import Users from '../containers/Users'
 import Dashboard from './Dashboard'
 import { Route } from 'react-router-dom'
 

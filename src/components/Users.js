@@ -12,22 +12,41 @@ import {
 import { sortByString } from '../helpers/sorting'
 
 
-const Users = () => {
+const Users = (props) => {
+
   const cmsUsers = [...users]
-  const usersSorted = sortByString(cmsUsers, 'email')
+  const usersSorted = sortByString(cmsUsers, props.filterName)
+  const changeSorting = filter => () => props.changeFilterName(filter)
 
   return (
     <Table>
       <TableHeader displaySelectAll={false}>
         <TableRow>
           <TableHeaderColumn>
-            <IconButton iconClassName="muidocs-icon-custom-github"/>
+            <IconButton disabled={props.filterName === 'firstName'}
+                        onClick={changeSorting('firstName')}
+                        iconClassName="material-icons"
+            >
+              sort
+            </IconButton>
             First Name
           </TableHeaderColumn>
           <TableHeaderColumn>
+            <IconButton disabled={props.filterName === 'lastName'}
+                        onClick={changeSorting('lastName')}
+                        iconClassName="material-icons"
+            >
+              sort
+            </IconButton>
             Last Name
           </TableHeaderColumn>
           <TableHeaderColumn>
+            <IconButton disabled={props.filterName === 'email'}
+                        onClick={changeSorting('email')}
+                        iconClassName="material-icons"
+            >
+              sort
+            </IconButton>
             Mail
           </TableHeaderColumn>
           <TableHeaderColumn>

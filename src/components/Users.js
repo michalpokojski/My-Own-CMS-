@@ -1,74 +1,68 @@
-import React from 'react'
+import React, { Component } from 'react'
+import DataTables from 'material-ui-datatables'
 import users from '../data/users.json'
-import FontIcon from 'material-ui/FontIcon'
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table'
-import Divider from 'material-ui/Divider'
-import Card from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton'
 import { sortByStringAscending, sortByStringDescending } from '../helpers/sorting'
+import { TABLE_COLUMNS_USERS } from '../constants/tableColumnsSpecifications'
 
+class Users extends Component {
+  state = {
+    searchPhrase: "",
+    page: 1,
+    rowSize: 10,
+  }
 
-const Users = (props) => {
+  handleFilter = value => {
+    this.setState({
+      searchPhrase: value
+    })
+  }
 
-  const cmsUsers = [...users]
-  const usersSorted = props.latelyFiltered ? sortByStringDescending(cmsUsers, props.filterName) : sortByStringAscending(cmsUsers, props.filterName)
-  const changeSorting = filter => () => props.changeFilterName(filter)
+  handlePreviousPageClick = () => {
+    this.setState({page: this.state.page - 1})
+  }
 
-  return (
-    <Card>
-      <Table>
-        <TableHeader displaySelectAll={false}>
-          <TableRow>
-            <TableHeaderColumn>
-              <FlatButton
-                label="First Name"
-                onClick={changeSorting('firstName')}
-                icon={props.filterName === 'firstName' && <FontIcon className="material-icons">{`keyboard_arrow_${props.latelyFiltered ? 'up' : 'down'}`}</FontIcon>}
-              />
-            </TableHeaderColumn>
-            <TableHeaderColumn>
-              <FlatButton
-                label="Last Name"
-                onClick={changeSorting('lastName')}
-                icon={props.filterName === 'lastName' && <FontIcon className="material-icons">{`keyboard_arrow_${props.latelyFiltered ? 'up' : 'down'}`}</FontIcon>}
-              />
-            </TableHeaderColumn>
-            <TableHeaderColumn>
-              <FlatButton
-                label="E-mail"
-                onClick={changeSorting('email')}
-                icon={props.filterName === 'email' && <FontIcon className="material-icons">{`keyboard_arrow_${props.latelyFiltered ? 'up' : 'down'}`}</FontIcon>}
-              />
-            </TableHeaderColumn>
-            <TableHeaderColumn>
-              <FlatButton label="Account Type" fullWidth={true} disabled={true} style={{textAlign: 'left'}}/>
-            </TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody displayRowCheckbox={false}
-                   showRowHover={true}
-                   stripedRows={true}
-        >
-          {usersSorted.map(user =>
-            <TableRow key={user.email}>
-              <TableRowColumn>{user.firstName}</TableRowColumn>
-              <TableRowColumn>{user.lastName}</TableRowColumn>
-              <TableRowColumn>{user.email}</TableRowColumn>
-              <TableRowColumn>{user.type}</TableRowColumn>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-      <Divider/>
-    </Card>
-  )
+  handleNextPageClick = () => {
+    this.setState({page: this.state.page + 1})
+  }
+
+  handleRowSizeChange = (rowSizeIndex, rowSize) => {
+    this.setState({page: 1, rowSize});
+  }
+
+  render() {
+
+    let data = sortByStringAscending([...users], 'email')
+      .filter(row =>
+        row.email.includes(this.state.searchPhrase) ||
+        row.lastName.includes(this.state.searchPhrase) ||
+        row.firstName.includes(this.state.searchPhrase))
+
+    let displayData = data.slice(this.state.rowSize * (this.state.page - 1), this.state.rowSize * (this.state.page))
+
+    const handleSort = (key, order) => order === 'desc' ? sortByStringDescending(displayData, key) : sortByStringAscending(displayData, key)
+
+    return (
+      <DataTables
+        height={'auto'}
+        showRowHover={true}
+        columns={TABLE_COLUMNS_USERS}
+        data={displayData}
+        showCheckboxes={false}
+        onSortOrderChange={handleSort}
+        showHeaderToolbar={true}
+        showHeaderToolbarFilterIcon={false}
+        initialSort={{column: 'email', order: 'asc'}}
+        onFilterValueChange={this.handleFilter}
+        headerToolbarMode={'filter'}
+        count={data.length}
+        page={this.state.page}
+        rowSize={this.state.rowSize}
+        onPreviousPageClick={this.handlePreviousPageClick}
+        onNextPageClick={this.handleNextPageClick}
+        onRowSizeChange={this.handleRowSizeChange}
+      />
+    )
+  }
 }
 
 export default Users

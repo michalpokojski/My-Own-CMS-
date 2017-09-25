@@ -1,6 +1,5 @@
 import React from 'react'
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentRemove from 'material-ui/svg-icons/content/remove';
+import RemoveButton from '../containers/RemoveButton'
 
 export const TABLE_COLUMNS_USERS = [
   {
@@ -19,14 +18,10 @@ export const TABLE_COLUMNS_USERS = [
     key: 'type',
     label: 'Type',
     sortable: true,
-    render: (name, all) => (
+    render: (key, fullUserObject) => (
       <div>
-        <h2>{name}</h2>
-        <span>
-          <FloatingActionButton>
-             <ContentRemove/>
-          </FloatingActionButton>
-        </span>
+        <span>{key}</span>
+        <RemoveButton email={fullUserObject.email} />
       </div>
     )
   },

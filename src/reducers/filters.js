@@ -1,26 +1,24 @@
-const CHANGE_FILTER_NAME = 'filterName/CHANGE_FILTER_NAME'
+const REMOVE_USER = 'filterName/REMOVE_USER'
 
-const changeFilterName = filter => ({
-  type: CHANGE_FILTER_NAME,
-  filter
+const removeUser = userEmail => ({
+  type: REMOVE_USER,
+  userEmail
 })
 
 const initialState = {
-  filterName: 'email',
-  latelyFiltered: false
+  filterOut: []
 }
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case CHANGE_FILTER_NAME:
+    case REMOVE_USER:
       return {
         ...state,
-        filterName: action.filter,
-        latelyFiltered: !state.latelyFiltered
+        filterOut: [...new Set(state.filterOut.concat(action.userEmail))],
       }
     default:
       return state
   }
 }
 
-export { changeFilterName }
+export { removeUser }

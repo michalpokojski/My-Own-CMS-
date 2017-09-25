@@ -13,7 +13,8 @@ class Users extends Component {
     searchPhrase: "",
     page: 1,
     rowSize: 10,
-    open: false
+    openUserCreator: false,
+    openUserEdit: false
   }
 
   handleFilter = value => {
@@ -35,16 +36,16 @@ class Users extends Component {
   }
 
   handleOpen = () => {
-    this.setState({open: true})
+    this.setState({openUserCreator: true})
   }
 
   handleClose = () => {
-    this.setState({open: false})
+    this.setState({openUserCreator: false})
   }
 
   handleCloseWithSubmit = () => {
     this.props.handleSubmit()
-    setTimeout(() => this.setState({open: !this.props.submitStatus.submitSucceeded}), 1000)
+    setTimeout(() => this.setState({openUserCreator: !this.props.submitStatus.submitSucceeded}), 1000)
   }
   render() {
     let data = sortByStringAscending([...users.concat(this.props.newUsers)], 'email')
@@ -58,7 +59,7 @@ class Users extends Component {
 
     const handleSort = (key, order) => order === 'desc' ? sortByStringDescending(displayData, key) : sortByStringAscending(displayData, key)
 
-    const actions = [
+    const actionsUserAdd = [
       <FlatButton
         label="Cancel"
         primary={true}
@@ -68,6 +69,19 @@ class Users extends Component {
         label="Submit"
         primary={true}
         onClick={this.handleCloseWithSubmit}
+      />,
+    ]
+
+    const actionsUserEdit = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onClick={this.props.saveEditing}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        onClick={this.props.saveEditing}
       />,
     ]
 
@@ -94,13 +108,20 @@ class Users extends Component {
         />
         <RaisedButton primary label="Add new user" onClick={this.handleOpen}/>
         <Dialog
-          title="Dialog With Actions"
-          actions={actions}
+          title="Add new user"
+          actions={actionsUserAdd}
           modal={true}
-          open={this.state.open}
+          open={this.state.openUserCreator}
         >
           <NewUserForm />
           {this.props.submitStatus.submitSucceeded && <h1>Success</h1>}
+        </Dialog>
+        <Dialog
+          title="Add new user"
+          actions={actionsUserEdit}
+          modal={true}
+          open={this.props.openUserEdit}
+        >New form goes here and edits user with email: {this.props.userBeingEdited && this.props.userBeingEdited.email}
         </Dialog>
       </div>
     )

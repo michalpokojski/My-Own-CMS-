@@ -1,5 +1,6 @@
 import React from 'react'
 import RemoveButton from '../containers/RemoveButton'
+import EditButton from "../containers/EditButton";
 
 export const TABLE_COLUMNS_USERS = [
   {
@@ -20,8 +21,9 @@ export const TABLE_COLUMNS_USERS = [
     sortable: true,
     render: (key, fullUserObject) => (
       <div>
-        <span>{key}</span>
+        <div style={{width: '40px', display: 'inline-block'}}>{key}</div>
         <RemoveButton email={fullUserObject.email} />
+        <EditButton user={fullUserObject}/>
       </div>
     )
   },

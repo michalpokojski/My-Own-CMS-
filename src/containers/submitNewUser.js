@@ -14,7 +14,6 @@ function submitNewUser(values, dispatch) {
     } else {
       dispatch(addNewUser({
         email: values.email,
-        password: values.password,
         firstName: values.firstName,
         lastName: values.lastName,
         type: values.accountType || 'user'

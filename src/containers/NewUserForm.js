@@ -5,6 +5,5 @@ import submitNewUser from '../containers/submitNewUser'
 
 export default reduxForm({
   form: "newUser",
-  destroyOnUnmount: false,
   onSubmit: submitNewUser
 })(NewUserForm)

@@ -6,6 +6,6 @@ import { removeUser } from '../reducers/filters'
 export default connect(
   null,
   dispatch => ({
-    remover: userEmail => dispatch(removeUser(userEmail))
+    removeUser: userEmail => dispatch(removeUser(userEmail))
   })
 )(RemoveButton)

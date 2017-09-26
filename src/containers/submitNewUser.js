@@ -1,6 +1,6 @@
 import { SubmissionError } from 'redux-form';
 import users from '../data/users.json'
-import { addNewUser } from '../reducers/addNewUser'
+import { addNewUser } from '../reducers/usersOperations'
 
 const delayThisBy = ms => new Promise(resolve => setTimeout(resolve, ms))
 const usersEmails = users.map(user => user.email)
@@ -16,7 +16,8 @@ function submitNewUser(values, dispatch) {
         email: values.email,
         firstName: values.firstName,
         lastName: values.lastName,
-        type: values.accountType || 'user'
+        type: values.accountType || 'user',
+        phoneNumber: values.phoneNumber
       }))
     }
   })

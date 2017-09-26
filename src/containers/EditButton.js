@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import EditButton from "../components/EditButton";
-import { currentlyBeingEdited } from '../reducers/userEdit'
+import { currentlyBeingEdited } from '../reducers/usersOperations'
 
 
 export default connect(

@@ -1,61 +1,50 @@
-import React, { Component } from 'react'
-import { required, email } from "../helpers/validation"
+import React from 'react'
+import { required, number } from "../helpers/validation"
 import { Field } from "redux-form"
 import CustomTextField from './CustomTextField'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 
-class CustomSelectField extends Component {
-  state = {
-    value: 'user'
-  }
-
-  inputValueInjection = (event, index, value) => this.setState({value})
-
-  render() {
-    const {input, label, meta: {touched, error}, children, ...custom} = this.props
-    return (
-      <SelectField
-        floatingLabelText={label}
-        errorText={touched && error}
-        {...input}
-        onChange={this.inputValueInjection}
-        children={children}
-        value={this.state.value}
-        {...custom}
-      />
-    )
-  }
+const CustomSelectField = ({input, label, meta: {touched, error}, children, ...custom}) => {
+  const inputValueInjection = (event, index, val) => input.onChange(val)
+  return (
+    <SelectField
+      floatingLabelText={label}
+      errorText={touched && error}
+      {...input}
+      onChange={inputValueInjection}
+      children={children}
+      {...custom}
+    />
+  )
 }
 
-const NewUserForm = (props) => {
-  const {error} = props
+const EditUserForm = (props) => {
+  const {error, userData} = props
   return (
     <form className="log-in-form">
       <div>
         <div>
           <Field
-            name="email"
+            name="password"
             component={CustomTextField}
-            type="text"
-            label="Email"
-            validate={[required, email]}
+            type="password"
+            label="New Password"
+            validate={[required]}
           />
         </div>
         <div>
           <Field
-            name="number"
+            name="phoneNumber"
             component={CustomTextField}
             label="Phone Number"
-            type="number"
-            validate={required}
+            validate={[required, number]}
           />
         </div>
         <div>
           <Field
             name="firstName"
             component={CustomTextField}
-            type="text"
             label="First Name"
             validate={required}
           />
@@ -64,19 +53,18 @@ const NewUserForm = (props) => {
           <Field
             name="lastName"
             component={CustomTextField}
-            type="text"
             label="Last Name"
             validate={required}
           />
         </div>
         <div>
           <Field
-            name="accountType"
+            name="type"
             component={CustomSelectField}
             label="Account Type"
           >
             <MenuItem value={'admin'} primaryText="Admin"/>
-            <MenuItem value={'user'} primaryText="User"/>
+            <MenuItem value={'user'} primaryText="Plebs"/>
           </Field>
         </div>
         {error && <strong>{error}</strong>}
@@ -84,4 +72,4 @@ const NewUserForm = (props) => {
     </form>
   )
 }
-export default NewUserForm
+export default EditUserForm

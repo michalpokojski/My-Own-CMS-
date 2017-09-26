@@ -1,18 +1,21 @@
 import { connect } from 'react-redux'
 import Users from '../components/Users'
 import { submit } from 'redux-form'
-import { saveEditing } from '../reducers/userEdit'
+import { saveEditing } from '../reducers/usersOperations'
 
 export default connect(
   state => ({
     removedUsers: state.filters.filterOut,
-    submitStatus: state.form.newUser || false,
-    newUsers: state.addNewUser.newUsers,
-    userBeingEdited: state.userEdit.userBeingEdited,
-    openUserEdit: state.userEdit.openUserEdit
+    editedUsers: state.userOperations.editedUsers,
+    submitStatusNewUser: state.form.newUser || false,
+    submitStatusEditUser: state.form.editUser || false,
+    newUsers: state.userOperations.newUsers,
+    userBeingEdited: state.userOperations.userBeingEdited,
+    openUserEdit: state.userOperations.openUserEdit
   }),
   dispatch => ({
-    handleSubmit: () => dispatch(submit('newUser')),
-    saveEditing: () => dispatch(saveEditing())
+    handleSubmitNewUser: () => dispatch(submit('newUser')),
+    handleSubmitEditUser: () => dispatch(submit('editUser')),
+    saveEditing: submitStatus => dispatch(saveEditing(submitStatus))
   })
 )(Users)

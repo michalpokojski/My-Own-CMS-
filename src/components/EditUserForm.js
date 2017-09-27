@@ -20,7 +20,7 @@ const CustomSelectField = ({input, label, meta: {touched, error}, children, ...c
 }
 
 const EditUserForm = (props) => {
-  const {error, userData} = props
+  const {error, userData, load} = props
   return (
     <form className="log-in-form">
       <div>

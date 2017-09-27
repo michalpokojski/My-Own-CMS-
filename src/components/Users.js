@@ -36,6 +36,12 @@ class Users extends Component {
       this.props.saveEditing(this.props.submitStatusEditUser.submitSucceeded), 100)
   }
 
+  handleRemoveClick = (email) => () => {
+    this.props.removeUser(email)
+    this.props.closeConfirm()
+  }
+
+  handleCloseConfirmModal = () => this.props.closeConfirm()
 
   render() {
     const editedEmails = this.props.editedUsers.map(user => user.email)
@@ -47,8 +53,8 @@ class Users extends Component {
         row.firstName.includes(this.state.searchPhrase)
       )
 
-    let displayData = data.slice(this.state.rowSize * (this.state.page - 1), this.state.rowSize * (this.state.page))
-      .filter(row => !this.props.removedUsers.some(name => name === row.email)).filter(row => !editedEmails.some(name => name === row.email)).concat(this.props.editedUsers)
+    let displayData = data.filter(row => !editedEmails.some(name => name === row.email)).concat(this.props.editedUsers).slice(this.state.rowSize * (this.state.page - 1), this.state.rowSize * (this.state.page))
+      .filter(row => !this.props.removedUsers.some(name => name === row.email))
 
     const handleSort = (key, order) => order === 'desc' ? sortByStringDescending(displayData, key) : sortByStringAscending(displayData, key)
 
@@ -78,6 +84,18 @@ class Users extends Component {
       />,
     ]
 
+    const actionsUserDelete = [
+      <FlatButton
+        label="I changed my mind"
+        secondary
+        onClick={this.handleCloseConfirmModal}
+      />,
+      <FlatButton
+        label="Confirm"
+        primary={true}
+        onClick={this.handleRemoveClick(this.props.userToDelete)}
+      />,
+    ]
     return (
       <div>
         <DataTables
@@ -117,6 +135,14 @@ class Users extends Component {
         >
           <EditUserForm userData={this.props.userBeingEdited}/>
           {this.props.submitStatusEditUser.submitSucceeded && <h1>Success</h1>}
+        </Dialog>
+        <Dialog
+          title={'Delete user'}
+          actions={actionsUserDelete}
+          modal={true}
+          open={this.props.confirmModalOpenStatus}
+        >
+          {`Are you sure you want to delete user ${this.props.userToDelete}`}
         </Dialog>
       </div>
     )

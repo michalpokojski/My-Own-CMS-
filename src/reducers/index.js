@@ -2,11 +2,11 @@ import { combineReducers } from 'redux'
 import auth from './auth'
 import userOperations from './usersOperations'
 import { reducer as reduxFormReducer } from 'redux-form'
-import filters from './filters'
+import userRemove from './userRemove'
 
 export default combineReducers({
   auth,
-  filters,
+  userRemove,
   userOperations,
   form: reduxFormReducer
 })

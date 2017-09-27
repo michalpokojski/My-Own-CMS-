@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import RemoveButton from "../components/RemoveButton";
-import { removeUser } from '../reducers/filters'
+import { openConfirm } from '../reducers/userRemove'
 
 
 export default connect(
   null,
   dispatch => ({
-    removeUser: userEmail => dispatch(removeUser(userEmail))
+    openConfirm: (user) => dispatch(openConfirm(user)),
   })
 )(RemoveButton)

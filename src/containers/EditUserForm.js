@@ -1,9 +1,17 @@
 import { reduxForm } from "redux-form"
 import EditUserForm from '../components/EditUserForm'
 import submitEditedUser from '../containers/submitEditedUser'
+import { connect } from 'react-redux'
 
 
-export default reduxForm({
+const formOptions = {
   form: "editUser",
   onSubmit: submitEditedUser
-})(EditUserForm)
+}
+
+
+export default connect(
+  state => ({
+    initialValues: state.userOperations.userBeingEdited
+  })
+)(reduxForm(formOptions)(EditUserForm))

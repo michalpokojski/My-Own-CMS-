@@ -1,7 +1,8 @@
 import React from 'react'
 import TextField from 'material-ui/TextField'
 
-const CustomTextField = ({input, label, meta: {touched, error}, ...custom}) => (
+const CustomTextField = ({input, label, meta: {touched, error}, ...custom}) =>{
+  return(
     <TextField
       hintText={label}
       floatingLabelText={label}
@@ -10,5 +11,5 @@ const CustomTextField = ({input, label, meta: {touched, error}, ...custom}) => (
       {...custom}
     />
   )
-
+}
 export default CustomTextField

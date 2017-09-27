@@ -2,6 +2,7 @@ const ADD_USER = 'addNewUser/ADD_USER'
 const EDIT_USER = 'addNewUser/EDIT_USER'
 const CURRENTLY_EDIT_USER = 'userEdit/CURRENTLY_EDIT_USER'
 const SAVE_AND_CLOSE_EDIT = 'userEdit/SAVE_AND_CLOSE_EDIT'
+const CLOSE_EDIT = 'userEdit/CLOSE_EDIT'
 
 const addNewUser = userData => ({
   type: ADD_USER,
@@ -21,6 +22,10 @@ const currentlyBeingEdited = userData => ({
 const saveEditing = submitStatus => ({
   type: SAVE_AND_CLOSE_EDIT,
   submitStatus
+})
+
+const discardEdditing = () => ({
+  type: CLOSE_EDIT
 })
 
 const initialState = {
@@ -56,9 +61,15 @@ export default (state = initialState, action = {}) => {
         userBeingEdited: null,
         openUserEdit: false
       } : state
+    case CLOSE_EDIT:
+      return {
+        ...state,
+        userBeingEdited: null,
+        openUserEdit: false
+      }
     default:
       return state
   }
 }
 
-export { addNewUser, submitEditedUser, currentlyBeingEdited, saveEditing }
+export { addNewUser, submitEditedUser, currentlyBeingEdited, saveEditing, discardEdditing }

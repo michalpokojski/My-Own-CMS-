@@ -4,10 +4,10 @@ import users from '../data/users.json'
 import { sortByStringAscending, sortByStringDescending } from '../helpers/sorting'
 import { TABLE_COLUMNS_USERS } from '../constants/tableColumnsSpecifications'
 import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog'
 import NewUserForm from '../containers/NewUserForm'
 import EditUserForm from "../containers/EditUserForm";
+import { actionsCreator } from '../helpers/actionsCreator'
 
 class Users extends Component {
   state = {
@@ -58,44 +58,10 @@ class Users extends Component {
 
     const handleSort = (key, order) => order === 'desc' ? sortByStringDescending(displayData, key) : sortByStringAscending(displayData, key)
 
-    const actionsUserAdd = [
-      <FlatButton
-        label="Cancel"
-        secondary
-        onClick={this.handleClose}
-      />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        onClick={this.handleCloseWithSubmit('new')}
-      />,
-    ]
+    const actionsUserAdd = actionsCreator('Cancel', this.handleClose, 'Submit', this.handleCloseWithSubmit('new'))
+    const actionsUserEdit = actionsCreator('Cancel', this.props.discardEdditing, 'Save', this.handleCloseWithSubmit('edit'))
+    const actionsUserDelete = actionsCreator('I changed my mind!', this.handleCloseConfirmModal, 'Confirm', this.handleRemoveClick(this.props.userToDelete))
 
-    const actionsUserEdit = [
-      <FlatButton
-        label="Cancel"
-        secondary
-        onClick={this.props.saveEditing}
-      />,
-      <FlatButton
-        label="Save"
-        primary={true}
-        onClick={this.handleCloseWithSubmit('edit')}
-      />,
-    ]
-
-    const actionsUserDelete = [
-      <FlatButton
-        label="I changed my mind"
-        secondary
-        onClick={this.handleCloseConfirmModal}
-      />,
-      <FlatButton
-        label="Confirm"
-        primary={true}
-        onClick={this.handleRemoveClick(this.props.userToDelete)}
-      />,
-    ]
     return (
       <div>
         <DataTables
@@ -145,7 +111,7 @@ class Users extends Component {
           {`Are you sure you want to delete user ${this.props.userToDelete}`}
         </Dialog>
       </div>
-    )
+    );
   }
 }
 

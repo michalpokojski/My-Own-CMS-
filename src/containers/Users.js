@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Users from '../components/Users'
 import { submit } from 'redux-form'
-import { saveEditing } from '../reducers/usersOperations'
+import { saveEditing, discardEdditing } from '../reducers/usersOperations'
 import { removeUser, closeConfirm } from '../reducers/userRemove'
 
 export default connect(
@@ -22,6 +22,7 @@ export default connect(
     handleSubmitEditUser: () => dispatch(submit('editUser')),
     saveEditing: submitStatus => dispatch(saveEditing(submitStatus)),
     removeUser: userEmail => dispatch(removeUser(userEmail)),
-    closeConfirm: () => dispatch(closeConfirm())
+    closeConfirm: () => dispatch(closeConfirm()),
+    discardEdditing: () => dispatch(discardEdditing())
   })
 )(Users)

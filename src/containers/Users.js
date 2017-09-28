@@ -4,8 +4,10 @@ import { submit } from 'redux-form'
 import { saveEditing, discardEdditing } from '../reducers/usersOperations'
 import { removeUser, closeConfirm } from '../reducers/userRemove'
 
-export default connect(
-  state => ({
+
+const mapStateToProps = (state, ownProps) => {
+
+  return ({
     removedUsers: state.userRemove.filterOut,
     editedUsers: state.userOperations.editedUsers,
     submitStatusNewUser: state.form.newUser || false,
@@ -16,13 +18,16 @@ export default connect(
     confirmModalOpenStatus: state.userRemove.confirmModalOpenStatus,
     userToDelete: state.userRemove.userToDelete
 
-  }),
-  dispatch => ({
-    handleSubmitNewUser: () => dispatch(submit('newUser')),
-    handleSubmitEditUser: () => dispatch(submit('editUser')),
-    saveEditing: submitStatus => dispatch(saveEditing(submitStatus)),
-    removeUser: userEmail => dispatch(removeUser(userEmail)),
-    closeConfirm: () => dispatch(closeConfirm()),
-    discardEdditing: () => dispatch(discardEdditing())
   })
-)(Users)
+}
+
+const mapDispatchToProps = dispatch => ({
+  handleSubmitNewUser: () => dispatch(submit('newUser')),
+  handleSubmitEditUser: () => dispatch(submit('editUser')),
+  saveEditing: submitStatus => dispatch(saveEditing(submitStatus)),
+  removeUser: userEmail => dispatch(removeUser(userEmail)),
+  closeConfirm: () => dispatch(closeConfirm()),
+  discardEdditing: () => dispatch(discardEdditing())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users)

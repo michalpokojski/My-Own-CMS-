@@ -8,6 +8,7 @@ import Dialog from 'material-ui/Dialog'
 import NewUserForm from '../containers/NewUserForm'
 import EditUserForm from "../containers/EditUserForm";
 import { actionsCreator } from '../helpers/actionsCreator'
+import DataTransformer from '../services/DataTransformer'
 
 class Users extends Component {
   state = {
@@ -15,6 +16,10 @@ class Users extends Component {
     page: 1,
     rowSize: 10,
     openUserCreator: false,
+  }
+
+  constructor () {
+    super(...arguments)
   }
 
   handleFilter = value => this.setState({searchPhrase: value})
@@ -44,16 +49,24 @@ class Users extends Component {
   handleCloseConfirmModal = () => this.props.closeConfirm()
 
   render() {
-    const editedEmails = this.props.editedUsers.map(user => user.email)
-    console.log(editedEmails)
-    let data = sortByStringAscending([...users.concat(this.props.newUsers)], 'email')
+    const transformer = new DataTransformer([...users.concat(this.props.newUsers)])
+
+    const searchKeys = [ 'email', 'lastName', 'firstName', 'phoneNumber' ]
+
+    const filters = transformer.search(searchKeys, 'misio').test()
+
+    const data = sortByStringAscending([...users.concat(this.props.newUsers)], 'email')
       .filter(row =>
         row.email.includes(this.state.searchPhrase) ||
         row.lastName.includes(this.state.searchPhrase) ||
         row.firstName.includes(this.state.searchPhrase)
       )
 
-    let displayData = data.filter(row => !editedEmails.some(name => name === row.email)).concat(this.props.editedUsers).slice(this.state.rowSize * (this.state.page - 1), this.state.rowSize * (this.state.page))
+    const editedEmails = this.props.editedUsers.map(user => user.email)
+
+    const displayData = data.filter(row => !editedEmails.some(name => name === row.email))
+      .concat(this.props.editedUsers)
+      .slice(this.state.rowSize * (this.state.page - 1), this.state.rowSize * (this.state.page))
       .filter(row => !this.props.removedUsers.some(name => name === row.email))
 
     const handleSort = (key, order) => order === 'desc' ? sortByStringDescending(displayData, key) : sortByStringAscending(displayData, key)

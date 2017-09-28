@@ -21,10 +21,6 @@ class Users extends Component {
     snackBarStatus: false
   }
 
-  constructor () {
-    super(...arguments)
-  }
-
   handleFilter = value => this.setState({searchPhrase: value})
 
   handlePreviousPageClick = () => this.setState({page: this.state.page - 1})
@@ -59,12 +55,13 @@ class Users extends Component {
     const actionsUserDelete = actionsCreator('I changed my mind!', this.handleCloseConfirmModal, 'Confirm', this.handleRemoveClick(this.props.userToDelete))
 
     const editedEmails = this.props.editedUsers.map(user => user.email)
-
-    const transformer = new DataTransformer([...users.concat(this.props.newUsers)])
+    const allUsers = [...users.concat(this.props.newUsers)]
+    const transformer = new DataTransformer(allUsers)
       .search(searchKeysForUsers, this.state.searchPhrase)
       .editUser(editedEmails, this.props.editedUsers)
       .paginate(this.state.rowSize, this.state.page)
       .filerOutRemovedUsers(this.props.removedUsers)
+
 
     const dataDefaultSorted = sortByStringAscending(transformer.collection, 'email')
 
@@ -84,14 +81,14 @@ class Users extends Component {
           initialSort={{column: 'email', order: 'asc'}}
           onFilterValueChange={this.handleFilter}
           headerToolbarMode={'filter'}
-          count={transformer.collection.length}
+          count={allUsers.length}
           page={this.state.page}
           rowSize={this.state.rowSize}
           onPreviousPageClick={this.handlePreviousPageClick}
           onNextPageClick={this.handleNextPageClick}
           onRowSizeChange={this.handleRowSizeChange}
         />
-        <RaisedButton primary label="Add new user" onClick={this.handleOpen}/>
+        <RaisedButton primary label="Add new \n user" onClick={this.handleOpen}/>
         <Dialog
           title="Add new user"
           actions={actionsUserAdd}

@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import DataTables from 'material-ui-datatables'
+import RaisedButton from 'material-ui/RaisedButton'
+import Dialog from 'material-ui/Dialog'
+import Snackbar from 'material-ui/Snackbar'
 import users from '../data/users.json'
 import { sortByStringAscending, sortByStringDescending } from '../helpers/sorting'
 import { TABLE_COLUMNS_USERS } from '../constants/tableColumnsSpecifications'
-import RaisedButton from 'material-ui/RaisedButton'
-import Dialog from 'material-ui/Dialog'
 import NewUserForm from '../containers/NewUserForm'
 import EditUserForm from "../containers/EditUserForm";
 import { actionsCreator } from '../helpers/actionsCreator'
 import DataTransformer from '../services/DataTransformer'
+import { searchKeysForUsers } from '../constants/searchKeysDatabase'
 
 class Users extends Component {
   state = {
@@ -16,6 +18,7 @@ class Users extends Component {
     page: 1,
     rowSize: 10,
     openUserCreator: false,
+    snackBarStatus: false
   }
 
   constructor () {
@@ -42,6 +45,8 @@ class Users extends Component {
   }
 
   handleRemoveClick = (email) => () => {
+    this.setState({snackBarStatus: true})
+    setTimeout(() => this.setState({snackBarStatus: false}), 2000)
     this.props.removeUser(email)
     this.props.closeConfirm()
   }
@@ -49,31 +54,21 @@ class Users extends Component {
   handleCloseConfirmModal = () => this.props.closeConfirm()
 
   render() {
-    const transformer = new DataTransformer([...users.concat(this.props.newUsers)])
-
-    const searchKeys = [ 'email', 'lastName', 'firstName', 'phoneNumber' ]
-
-    const filters = transformer.search(searchKeys, 'misio').test()
-
-    const data = sortByStringAscending([...users.concat(this.props.newUsers)], 'email')
-      .filter(row =>
-        row.email.includes(this.state.searchPhrase) ||
-        row.lastName.includes(this.state.searchPhrase) ||
-        row.firstName.includes(this.state.searchPhrase)
-      )
-
-    const editedEmails = this.props.editedUsers.map(user => user.email)
-
-    const displayData = data.filter(row => !editedEmails.some(name => name === row.email))
-      .concat(this.props.editedUsers)
-      .slice(this.state.rowSize * (this.state.page - 1), this.state.rowSize * (this.state.page))
-      .filter(row => !this.props.removedUsers.some(name => name === row.email))
-
-    const handleSort = (key, order) => order === 'desc' ? sortByStringDescending(displayData, key) : sortByStringAscending(displayData, key)
-
     const actionsUserAdd = actionsCreator('Cancel', this.handleClose, 'Submit', this.handleCloseWithSubmit('new'))
     const actionsUserEdit = actionsCreator('Cancel', this.props.discardEdditing, 'Save', this.handleCloseWithSubmit('edit'))
     const actionsUserDelete = actionsCreator('I changed my mind!', this.handleCloseConfirmModal, 'Confirm', this.handleRemoveClick(this.props.userToDelete))
+
+    const editedEmails = this.props.editedUsers.map(user => user.email)
+
+    const transformer = new DataTransformer([...users.concat(this.props.newUsers)])
+      .search(searchKeysForUsers, this.state.searchPhrase)
+      .editUser(editedEmails, this.props.editedUsers)
+      .paginate(this.state.rowSize, this.state.page)
+      .filerOutRemovedUsers(this.props.removedUsers)
+
+    const dataDefaultSorted = sortByStringAscending(transformer.collection, 'email')
+
+    const handleSort = (key, order) => order === 'desc' ? sortByStringDescending(dataDefaultSorted, key) : sortByStringAscending(dataDefaultSorted, key)
 
     return (
       <div>
@@ -81,7 +76,7 @@ class Users extends Component {
           height={'auto'}
           showRowHover
           columns={TABLE_COLUMNS_USERS}
-          data={displayData}
+          data={dataDefaultSorted}
           showCheckboxes={false}
           onSortOrderChange={handleSort}
           showHeaderToolbar
@@ -89,7 +84,7 @@ class Users extends Component {
           initialSort={{column: 'email', order: 'asc'}}
           onFilterValueChange={this.handleFilter}
           headerToolbarMode={'filter'}
-          count={data.length}
+          count={transformer.collection.length}
           page={this.state.page}
           rowSize={this.state.rowSize}
           onPreviousPageClick={this.handlePreviousPageClick}
@@ -113,7 +108,6 @@ class Users extends Component {
           open={this.props.openUserEdit}
         >
           <EditUserForm userData={this.props.userBeingEdited}/>
-          {this.props.submitStatusEditUser.submitSucceeded && <h1>Success</h1>}
         </Dialog>
         <Dialog
           title={'Delete user'}
@@ -123,6 +117,11 @@ class Users extends Component {
         >
           {`Are you sure you want to delete user ${this.props.userToDelete}`}
         </Dialog>
+        <Snackbar
+          open={this.state.snackBarStatus}
+          message={`User removed`}
+          autoHideDuration={2000}
+        />
       </div>
     );
   }

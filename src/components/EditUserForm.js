@@ -19,8 +19,7 @@ const CustomSelectField = ({input, label, meta: {touched, error}, children, ...c
   )
 }
 
-const EditUserForm = (props) => {
-  const {error, userData, load} = props
+const EditUserForm = () => {
   return (
     <form className="log-in-form">
       <div>
@@ -67,7 +66,6 @@ const EditUserForm = (props) => {
             <MenuItem value={'user'} primaryText="Plebs"/>
           </Field>
         </div>
-        {error && <strong>{error}</strong>}
       </div>
     </form>
   )

@@ -33,9 +33,9 @@ class Users extends Component {
 
   handleClose = () => this.setState({openUserCreator: false})
 
-  handleCloseWithSubmit = (newOrEdit) => () => {
-    newOrEdit === 'new' ? this.props.handleSubmitNewUser() : this.props.handleSubmitEditUser()
-    setTimeout(() => newOrEdit === 'new' ?
+  handleCloseWithSubmit = (isNew) => () => {
+    isNew ? this.props.handleSubmitNewUser() : this.props.handleSubmitEditUser()
+    setTimeout(() => isNew ?
       this.setState({openUserCreator: !this.props.submitStatusNewUser.submitSucceeded}) :
       this.props.saveEditing(this.props.submitStatusEditUser.submitSucceeded), 100)
   }
@@ -50,11 +50,12 @@ class Users extends Component {
   handleCloseConfirmModal = () => this.props.closeConfirm()
 
   render() {
-    const actionsUserAdd = actionsCreator('Cancel', this.handleClose, 'Submit', this.handleCloseWithSubmit('new'))
-    const actionsUserEdit = actionsCreator('Cancel', this.props.discardEdditing, 'Save', this.handleCloseWithSubmit('edit'))
+    const actionsUserAdd = actionsCreator('Cancel', this.handleClose, 'Submit', this.handleCloseWithSubmit(true))
+    const actionsUserEdit = actionsCreator('Cancel', this.props.discardEdditing, 'Save', this.handleCloseWithSubmit(false))
     const actionsUserDelete = actionsCreator('I changed my mind!', this.handleCloseConfirmModal, 'Confirm', this.handleRemoveClick(this.props.userToDelete))
 
     const editedEmails = this.props.editedUsers.map(user => user.email)
+
     const allUsers = [...users.concat(this.props.newUsers)]
     const transformer = new DataTransformer(allUsers)
       .search(searchKeysForUsers, this.state.searchPhrase)

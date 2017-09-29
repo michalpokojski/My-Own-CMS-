@@ -3,7 +3,6 @@ import { submitEditedUser } from '../reducers/usersOperations'
 const delayThisBy = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 function submitNewUser(values, dispatch, props) {
-  console.log(props)
   return delayThisBy(1).then(() => dispatch(submitEditedUser({
       email: props.userData.email,
       password: values.password || props.userData.password,

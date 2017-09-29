@@ -44,7 +44,7 @@ const NewUserForm = (props) => {
         </div>
         <div>
           <Field
-            name="number"
+            name="phoneNumber"
             component={CustomTextField}
             label="Phone Number"
             type="number"

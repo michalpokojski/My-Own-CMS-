@@ -3,17 +3,104 @@
   "password": "qwe123",
   "type": "user",
   "firstName": "Misio",
+  "phoneNumber": "1616816153518",
   "lastName": "Misiasty"
 },{
-  "email": "aaa@aaa.com",
+  "email": "zaaa@aaa.com",
   "password": "aaa",
   "type": "user",
   "firstName": "Aaaaaa",
+  "phoneNumber": "641864864",
   "lastName": "Bbbbbbbb"
 },{
   "email": "admin@admin.admin",
   "password": "admin",
   "type": "admin",
+  "phoneNumber": "6127897987",
   "firstName": "Admin",
   "lastName": "Adminowaty"
+},{
+  "email": "misftgbtbybio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "phoneNumber": "120212",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "aaasdweda@aaa.com",
+  "password": "aaa",
+  "type": "user",
+  "phoneNumber": "14546684651",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "misqweqweqweio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "phoneNumber": "16513223135",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "awerfwerfaa@etybetbytaaa.com",
+  "password": "aaa",
+  "type": "user",
+  "phoneNumber": "1231549847321",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "mfwrfwrgtreisio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "phoneNumber": "1231216549874",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "aaa@aawerfewrfa.com",
+  "password": "aaa",
+  "type": "user",
+  "phoneNumber": "45412424",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "miswerfwerfio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "phoneNumber": "153268489796",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "aaa@aaartrtg.com",
+  "password": "aaa",
+  "type": "user",
+  "phoneNumber": "115648949841",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "misio@mirtgergtergsio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "phoneNumber": "4156465",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "argtergtetgretaa@aaa.com",
+  "password": "aaa",
+  "type": "user",
+  "phoneNumber": "4684894",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
+},{
+  "email": "misgrgrgrerio@misio.pl",
+  "password": "qwe123",
+  "type": "user",
+  "phoneNumber": "884654",
+  "firstName": "Misio",
+  "lastName": "Misiasty"
+},{
+  "email": "aaregtretgregta@aaa.com",
+  "password": "aaa",
+  "type": "user",
+  "phoneNumber": "641651",
+  "firstName": "Aaaaaa",
+  "lastName": "Bbbbbbbb"
 }]

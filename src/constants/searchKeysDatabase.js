@@ -1,0 +1,1 @@
+export const searchKeysForUsers = [ 'email', 'lastName', 'firstName', 'phoneNumber' ]

@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
 import { Route } from 'react-router'
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import { MuiThemeProvider } from 'material-ui/styles'
 import Router from './router'
 import LogIn from './containers/LogIn'
 import AuthRoute from './AuthRoute'
 import AppView from "./containers/AppView"
-import { MuiThemeProvider } from 'material-ui/styles'
 import SecuredRoute from './SecuredRoute'
 
-class App extends Component {
-  render() {
-    const {store} = this.props
+const App = (props) => {
+    injectTapEventPlugin()
+    const { store } = props
     return (
       <Provider store={store}>
         <Router>
@@ -25,6 +26,6 @@ class App extends Component {
       </Provider>
     )
   }
-}
+
 
 export default App
